@@ -80,9 +80,11 @@ async function run() {
         // DELETE API
         app.delete("/deleteProduct/:id", async (req, res)=>{
             console.log(req.params.id);
-            const result = await ordersCollection.deleteOne({ _id: ObjectId(req.params.id),
-            })
-            console.log(result);
+            const id = req.params.id;
+            const query = {_id: ObjectId(id)};
+            const result = await ordersCollection.deleteOne(query);
+            res.json(result);
+            console.log(result)
 
         })
 
